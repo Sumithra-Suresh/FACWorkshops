@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Learn Testing</title>
+  </head>
+  <body>
+    <h1>Open the console</h1>
+
+    <script>
+      // the function we're testing
+      function square(x) {
+        return x * x;
+      }
+
+      // Begin to automate and reusable
+      function testEqual(expected, actual, message){
+
+          if (expected === actual) {
+            const defaultMsg = `Expected ${expected} is same as actual ${actual}`;
+            console.info(`Pass:` + (message || defaultMsg));
+          }
+          else{
+            const defaultMsg = `Expected ${expected} is different to actual ${actual}`;
+            console.error(`Fail:` + (message|| defaultMsg) );
+          }
+      }
+
+      testEqual(4, square(2));
+      testEqual(6, square(3)); // delibrately wrong answer to test errors
+
+      // not equal
+      function testNotEqual(expected, actual, message){
+        if (expected !== actual) {
+          const defaultMsg = `Expected ${expected} is different to actual ${actual}`;
+          console.info(`Pass:` + (message || defaultMsg));
+        }
+        else{
+          const defaultMsg = `Expected ${expected} is same as actual ${actual}`;
+          console.error(`Fail:` + (message || defaultMsg));
+        }
+      }
+
+      testNotEqual(20, square(5));
+
+      // Separating Tests 
+      // test('msgGrp', callback)
+      function test(name, testFunction){
+        console.group(name);
+        testFunction();
+        console.groupEnd();
+
+      }
+
+      test("Correctly squares integers", ()=>testEqual(9, square(3),"square(3) should return 9"));
+
+
+    </script>
+  </body>
+</html>
