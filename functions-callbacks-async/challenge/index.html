@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Challenge | Functions and asynchronous JavaScript</title>
+  </head>
+  <body>
+    <h1>Open the console</h1>
+    <script>
+
+
+      
+      /*===========working for green and amber*/
+/*
+      const light = (str) => {
+        console.log(str)
+        window.setTimeout(()=>{light("Amber")},1000);
+
+      }
+
+      light("green");
+      */
+      /*
+      window.setTimeout(()=>{
+        console.log("green");
+        window.setTimeout(()=>{
+          console.log("amber");
+          window.setTimeout(()=>{
+            console.log("red");
+            window.setTimeout(()=>{
+              console.log("amber");
+              window.setTimeout(()=>{
+                console.log("green");
+                window.setTimeout(()=>{
+                  console.log("finished");
+                },1000);
+              },1000);
+            },1000);
+          },1000);
+        },1000);
+      },1000);*/
+
+     /*
+     //=======================Working==============================  
+    const arr=['green','amber','red', 'amber', 'green', 'finished'];
+    let i =0;
+
+   function light(str){
+      
+      window.setTimeout(()=>{
+        console.log(str);
+        if(str !='finished')
+          light(arr[++i]);
+        else
+          return;  
+
+      },1000);
+    }
+
+    light(arr[i]);
+
+    */
+
+
+    /*
+    //============Not Working =======================
+
+    const arr=['green','amber','red', 'amber', 'green', 'finished'];
+    let i =0;
+
+    function callback(){
+      
+      window.setTimeout(()=>{light([++i],callback)},1000);
+    }
+
+    function light(str, callback){
+      console.log(str);
+    
+      if (str==='finished')
+         return;
+      callback();
+    }
+
+    light(arr[i],callback);
+    */
+
+  
+
+         
+     //=======================Working==============================  
+    const arr=['green','amber','red', 'amber', 'green', 'finished'];
+    let i =0;
+
+   function light(str){
+      
+      setTimeout(()=>{
+        console.log(str);
+        if(str !='finished')
+          light(arr[++i]);
+        else
+          return;  
+
+      },1000);
+    }
+
+    light(arr[i]);
+
+
+    </script>
+
+  </body>
+</html>

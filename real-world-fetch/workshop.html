@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Real world fetch</title>
+  </head>
+  <body>
+
+    <form>
+      <br><br>
+      <label for="fname">First Name: </label>
+      <input type="text" id="fname" name="fname">
+      <br><br>
+      <label for="fname">Last Name: </label>
+      <input type="text" id="lname" name="lname">
+      <br><br>
+      <button type="submit">Submit</button>
+    </form>
+    <script>
+      //=======================================================================
+      //  Challenge #1
+      //  .then is handling the 404.
+      //  In HTTP perspective it received a response, so it is successful
+      //=======================================================================
+        fetch("https://echo.oliverjam.workers.dev/status/404")
+        .then((resp)=>console.log(resp))
+        .catch((err)=>console.error(err));
+
+
+      //=======================================================================
+      //  Challenge #2
+      //  Handle the error in response using response 'ok' property
+      //  If not ok throw new error with response status.
+      //=======================================================================
+
+      //  fetch("https://echo.oliverjam.workers.dev/status/404")
+      //   .then((resp)=>{
+      //       if(!resp.ok){
+      //           throw new Error(resp.status);
+      //       }
+      //       console.log(resp);
+      //   })
+      //   .catch((err)=>console.error(err))
+
+      //=======================================================================
+      //  Challenge #3
+      //  Submitting data
+      //  
+      //=======================================================================
+
+        // const data = {name:'Abby'};
+
+        // fetch("https://echo.oliverjam.workers.dev/json",
+        // {
+        //   method  :"POST",
+        //   headers :{
+        //             'content-Type': 'application/json',
+        //            },
+        //   body    :JSON.stringify(data),
+        // })
+        // .then((resp)=>{
+        //     if(!resp.ok){
+        //       throw new Error(resp.status);
+        //     }
+        //     return resp.json();
+        // })
+        // .then((user)=>console.log(user))
+        // .catch((err)=>console.error(err))
+
+
+      //=======================================================================
+      //  Challenge #4
+      //  User Input
+      //  get the user input and post it to the specified url
+      //  using fetch
+      //=======================================================================
+      
+          // const form = document.querySelector('form');
+
+          // form.addEventListener("submit",postUser);
+
+          // function postUser(e){
+
+          //   e.preventDefault(); 
+          //   const fname = document.querySelector("#fname");
+          //   const lname = document.querySelector("#lname");
+          //   const data = {"fname": fname.value,
+          //                 "lname": lname.value};
+            
+          //   fetch("https://echo.oliverjam.workers.dev/json",
+          //   {
+          //     method  :"POST",
+          //     headers :{
+          //               'content-Type': 'application/json',
+          //             },
+          //     body    :JSON.stringify(data),
+          //   })
+          //   .then((resp)=>{
+          //       if(!resp.ok) throw new Error(resp.status);
+          //       return resp.json();
+          //   })
+          //   .then((user)=>{console.log(user)})
+          //   .catch((err)=>console.error(err));
+          // }
+
+      //=======================================================================
+      //  Challenge #5
+      //  new FormData()
+      //  
+      //  
+      //=======================================================================
+        // const form = document.querySelector('form');
+
+        // form.addEventListener("submit",postUser);
+
+        // function postUser(e){
+
+        //   e.preventDefault(); 
+
+        //   // extract all form data values usind FormData() interface
+        //   const formData = new FormData(form);
+
+        //   // convert the form data into normal object to submit
+        //   // as JSON
+        //   const data = Object.fromEntries(formData);
+          
+        //   fetch("https://echo.oliverjam.workers.dev/json",
+        //   {
+        //     method  :"POST",
+        //     headers :{
+        //               'content-Type': 'application/json',
+        //             },
+        //     body    :JSON.stringify(data),
+        //   })
+        //   .then((resp)=>{
+        //       if(!resp.ok) throw new Error(resp.status);
+        //       return resp.json();
+        //   })
+        //   .then((user)=>{console.log(user)})
+        //   .catch((err)=>console.error(err));
+        // }
+    </script>
+  </body>
+</html>

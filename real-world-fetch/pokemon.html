@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pokemon Search</title>
+  </head>
+  <body>
+
+        <header>
+            <h1>Pokemon Search</h1>
+        </header>
+
+        <form>
+            <br>
+            <label for="name">Pokemon name </label><br>
+            <input type="text" id="name" name="pname">
+            <button type="submit">Search</button>
+        </form>
+        <div id="output"></div>
+        <script>
+            
+            const form = document.querySelector("form");
+            const output = document.querySelector("#output");
+
+            form.addEventListener("submit", getResults);
+
+            function getResults(e){
+
+                // stop the default form submission
+                e.preventDefault();
+
+                // clear out any previous results
+                output.innerHTML = " ";
+
+                const formData = new FormData(form);
+                const name = formData.get('pname');
+
+                const url = `https://pokeapi.co/api/v2/pokemon/${name}`;
+
+                // Request the search string in PokeAPI
+                fetch(url)
+                .then((resp) => {
+                    if(!resp.ok)throw new Error(resp.status);
+
+                    return resp.json();
+                })
+                // for successful response
+                .then((data) => {
+
+                    // Poke name
+                    const heading = document.createElement("h2");
+                    heading.textContent = data.name;
+
+                    // Poke image
+                    const image = document.createElement("img");
+                    image.src = data.sprites.front_default;
+                    image.alt = " ";
+
+                    output.append(heading, image);
+                })
+                .catch((err) => {
+                    console.error(err);
+                    if (err.message === "404") {
+                        output.textContent = `⚠️ Couldn't find "${name}"`;
+                    } else {
+                        output.textContent = "⚠️ Something went wrong";
+                    }
+                });
+            }
+
+
+        </script>
+    </body>
+</html>

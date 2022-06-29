@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Learn Fetch & Promises</title>
+  </head>
+  <body>
+    <h1>Open the console</h1>
+    <script>
+
+      const CHALLENGES = false;
+      const TASK1 = false;
+      const TASK2 = false;
+      const TASK3 = true;
+ 
+      if(CHALLENGES){
+        const promiseObj = fetch("https://pokeapi.co/api/v2/pokemon/pikachu");
+        //const promiseObj = fetch("https://pokeapi.co/api/v2/pokemon/p"); // To test borken URL
+        console.log(promiseObj);
+
+        promiseObj.then((result)=>{console.log(result)});
+
+        promiseObj
+        .then((response)=>{response.json()})
+        .then((data)=>{console.log(data)})
+        .catch((err)=>{console.log(err)});
+      }
+      else{
+
+        // Task #1 fetch the user from github
+
+        // fetch the user's profile from github
+        function getUser(userName){
+          const userPromise = fetch(`https://api.github.com/users/${userName}`);
+          return (userPromise.then((response)=>response.json()));
+        }
+        
+        if(TASK1)
+          getUser("Sumithra-Suresh").then(console.log).catch(console.error);
+
+        // Task #2 fetch repos of the user
+      
+        function getRepos(user){
+          return fetch(user.repos_url).then((response)=>response.json());
+        }
+
+        if(TASK2){
+          getUser("Sumithra-Suresh")
+            .then(getRepos)
+            .then(console.log)
+            .catch(console.error);
+        }
+
+        // Task #3 Fetch multiple users
+        const fetchUser1 = getUser("Sumithra-Suresh");
+        const fetchUser2 = getUser("oliverjam");
+
+        if(TASK3){
+          Promise.all([fetchUser1, fetchUser2])
+            .then( (responses) => {
+              for(const resp of responses){
+                console.log(resp);
+              }
+            })
+            .catch(console.error);
+        }
+      }
+
+    
+    </script>
+  </body>
+</html>

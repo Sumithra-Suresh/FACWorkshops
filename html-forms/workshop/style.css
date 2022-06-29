@@ -1,0 +1,37 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  max-width: 30rem;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: monospace, sans-serif;
+  font-size: 1rem;
+  color: #333333;
+  background-color:gainsboro;
+}
+
+/* All inputs other than checkboxes & radios
+ * should be block display so they sit on a new line
+ */
+input:not([type="checkbox"]):not([type="radio"]),
+button,
+textarea {
+  display: block;
+  font: inherit;
+  color: inherit;
+}
+
+/*Contact form style*/
+input:not([type="checkbox"]),
+button,
+textarea{
+  width: 100%;
+  padding: 0.5rem;
+}
+
+.preferred-contact{
+  display: flex;
+  align-items: center;
+}
